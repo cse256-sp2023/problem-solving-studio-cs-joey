@@ -101,9 +101,7 @@ function define_new_dialog(id_prefix, title = '', options = {}) {
 }
 
 $('.perm_info').click(function () {
-
-    // define_new_dialog(id_prefix='idk')
-    console.log('clicked!')
+    console.log('clicked!');
 })
 
 // Define a generic list which allows you to select one of the items, and propagates that item's 'name' attribute to its own 'selected_item' attribute.
