@@ -72,3 +72,5 @@ $('.permbutton').click( function( e ) {
 
 // ---- Assign unique ids to everything that doesn't have an ID ----
 $('#html-loc').find('*').uniqueId() 
+
+let permissionPrintOut = define_new_effective_permissions('perm_', true)
