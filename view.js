@@ -74,3 +74,4 @@ $('.permbutton').click( function( e ) {
 $('#html-loc').find('*').uniqueId() 
 
 let permissionPrintOut = define_new_effective_permissions('perm_', true)
+let newUserField = define_new_user_select_field('user_', 'Select User', on_user_change = function(selected_user){})
