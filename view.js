@@ -1,5 +1,15 @@
 // ---- Define your dialogs  and panels here ----
 
+$('.permbutton').append('Permissions')
+$('#perm_').attr('filepath', '/C')
+$('#perm_').attr('username', 'administrator')
+let permissionPrintOut = define_new_effective_permissions('perm_', true)
+let newUserField = define_new_user_select_field('user_', 'Select User', on_user_change = function(selected_user){
+    $('#perm_').attr('username', selected_user)
+    $('#perm_').attr('filepath', '/C/presentation_documents/important_file.txt_permicon')
+})
+$('#sidepanel').append(permissionPrintOut)
+$('#sidepanel').append(newUserField)
 
 // ---- Display file structure ----
 
@@ -72,16 +82,7 @@ $('.permbutton').click( function( e ) {
 // ---- Assign unique ids to everything that doesn't have an ID ----
 $('#html-loc').find('*').uniqueId() 
 
-let permissionPrintOut = define_new_effective_permissions('perm_', true)
-let newUserField = define_new_user_select_field('user_', 'Select User', on_user_change = function(selected_user){
-    $('#perm_').attr('username', selected_user)
-    $('#perm_').attr('filepath', '/C/presentation_documents/important_file.txt_permicon')
-})
 
 
-$('.permbutton').append('Permissions')
-$('#perm_').attr('filepath', '/C')
-$('#perm_').attr('username', 'administrator')
-$('#sidepanel').append(permissionPrintOut)
-$('#sidepanel').append(newUserField)
+
 
