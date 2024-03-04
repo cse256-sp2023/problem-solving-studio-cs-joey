@@ -1,7 +1,6 @@
 // ---- Define your dialogs  and panels here ----
 
 
-
 // ---- Display file structure ----
 
 // (recursively) makes and returns an html element (wrapped in a jquery object) for a given file object
@@ -74,4 +73,15 @@ $('.permbutton').click( function( e ) {
 $('#html-loc').find('*').uniqueId() 
 
 let permissionPrintOut = define_new_effective_permissions('perm_', true)
-let newUserField = define_new_user_select_field('user_', 'Select User', on_user_change = function(selected_user){})
+let newUserField = define_new_user_select_field('user_', 'Select User', on_user_change = function(selected_user){
+    $('#perm_').attr('username', selected_user)
+    $('#perm_').attr('filepath', '/C/presentation_documents/important_file.txt_permicon')
+})
+
+
+$('.permbutton').append('Permissions')
+$('#perm_').attr('filepath', '/C')
+$('#perm_').attr('username', 'administrator')
+$('#sidepanel').append(permissionPrintOut)
+$('#sidepanel').append(newUserField)
+
