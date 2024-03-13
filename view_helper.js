@@ -2,7 +2,20 @@
 // ---- Most functions have a required "id_prefix" parameter: you need to specify unique ids that will be used in the HTML, 
 // ---- so that we can tell from the logs what was actually clicked on.
 
-
+$('.perm_info').click(function () {
+    console.log('clicked!');
+    // $( "#dialog" ).dialog();
+    define_new_dialog(null, null, null)
+    let myPath = $('#perm_').attr('filepath')
+    console.log(myPath)
+    let myUsername = $('#perm_').attr('username')
+    console.log(myUsername)
+    let myPermName = $(this).attr('permission_name')
+    console.log(myPermName)
+    let my_file_obj_var = path_to_file[myPath];
+    let myIsAllowed = allow_user_action();
+    let myExplanation = null
+})
 // --- helper functions for connecting things with events ---
 
 // define an observer which will call the passed on_attr_change function when the watched_attribute of watched_elem_selector 
@@ -100,9 +113,7 @@ function define_new_dialog(id_prefix, title = '', options = {}) {
     return dialog
 }
 
-$('.perm_info').click(function () {
-    console.log('clicked!');
-})
+
 
 // Define a generic list which allows you to select one of the items, and propagates that item's 'name' attribute to its own 'selected_item' attribute.
 // Note: each selectable item in the list is expted to have a 'name' attribute.
