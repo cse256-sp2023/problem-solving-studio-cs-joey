@@ -1,12 +1,14 @@
 // ---- these are helper functions that let you more easily create useful elements. ----
 // ---- Most functions have a required "id_prefix" parameter: you need to specify unique ids that will be used in the HTML, 
 // ---- so that we can tell from the logs what was actually clicked on.
+/* 
+
 
 $('.perm_info').click(function () {
     console.log('clicked!');
     // $( "#dialog" ).dialog();
-    let blankDia = define_new_dialog(id_prefix='#perm_')
-    blankDia.dialog();
+    let blankDia = define_new_dialog(id_prefix='blank', title = 'blank')
+    blankDia.dialog('open');
     let myPath = $('#perm_').attr('filepath')
     console.log(myPath)
     let myUsername = $('#perm_').attr('username')
@@ -17,6 +19,12 @@ $('.perm_info').click(function () {
     let myIsAllowed = allow_user_action();
     let myExplanation = null
 })
+
+
+
+
+*/
+
 // --- helper functions for connecting things with events ---
 
 // define an observer which will call the passed on_attr_change function when the watched_attribute of watched_elem_selector 

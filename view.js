@@ -37,9 +37,18 @@ $('.perm_info').click(function () {
     console.log('clicked!');
     let blankDia = define_new_dialog(id_prefix = 'blank', title = 'blank')
     blankDia.dialog('open');
-    console.log($('#perm_').attr('filepath'))
-    console.log($('#perm_').attr('username'))
-    console.log($(this).attr('permission_name'))
+    
+    let myPath = $('#perm_').attr('filepath')
+    console.log(myPath)
+    let myUsername = $('#perm_').attr('username')
+    console.log(myUsername)
+    let myUserObject = all_users[myUsername]
+    let myPermName = $(this).attr('permission_name')
+    console.log(myPermName)
+    let my_file_obj_var = path_to_file[myPath];
+    let myIsAllowed, myExplanation = allow_user_action(my_file_obj_var, myUserObject, myPermName, explain_why=true);
+    let readableExplanation = get_explanation_text(myExplanation)
+    blankDia.append(readableExplanation)
 })
 
 // ---- Display file structure ----
