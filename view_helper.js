@@ -5,7 +5,8 @@
 $('.perm_info').click(function () {
     console.log('clicked!');
     // $( "#dialog" ).dialog();
-    define_new_dialog(null, null, null)
+    let blankDia = define_new_dialog(id_prefix='#perm_')
+    blankDia.dialog();
     let myPath = $('#perm_').attr('filepath')
     console.log(myPath)
     let myUsername = $('#perm_').attr('username')
@@ -98,7 +99,7 @@ function define_new_dialog(id_prefix, title = '', options = {}) {
         modal: true,
         position: { my: "top", at: "top", of: $('#html-loc') },
     }
-
+    console.log("define_new_dialog has been called");
     // add default options - do not override ones that are already specified.
     for (let d_o in default_options) {
         if (!(d_o in options)) {

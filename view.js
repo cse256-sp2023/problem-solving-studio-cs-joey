@@ -3,13 +3,44 @@
 $('.permbutton').append('Permissions')
 $('#perm_').attr('filepath', '/C')
 $('#perm_').attr('username', 'administrator')
+
+
 let permissionPrintOut = define_new_effective_permissions('perm_', true)
-let newUserField = define_new_user_select_field('user_', 'Select User', on_user_change = function(selected_user){
+let newUserField = define_new_user_select_field('user_', 'Select User', on_user_change = function (selected_user) {
     $('#perm_').attr('username', selected_user)
     $('#perm_').attr('filepath', '/C/presentation_documents/important_file.txt_permicon')
 })
 $('#sidepanel').append(permissionPrintOut)
 $('#sidepanel').append(newUserField)
+
+
+// let blankDia = define_new_dialog(id_prefix='blank', title = 'blank')
+
+// $('.perm_info').click(function () {
+//     console.log('clicked!');
+//     // $( "#dialog" ).dialog();
+//     blankDia.dialog('open');
+//     let myPath = $('#perm_').attr('filepath')
+//     console.log(myPath)
+//     let myUsername = $('#perm_').attr('username')
+//     console.log(myUsername)
+//     let myPermName = $(this).attr('permission_name')
+//     console.log(myPermName)
+//     let my_file_obj_var = path_to_file[myPath];
+//     let myIsAllowed = allow_user_action();
+//     let myExplanation = null
+// })
+
+
+
+$('.perm_info').click(function () {
+    console.log('clicked!');
+    let blankDia = define_new_dialog(id_prefix = 'blank', title = 'blank')
+    blankDia.dialog('open');
+    console.log($('#perm_').attr('filepath'))
+    console.log($('#perm_').attr('username'))
+    console.log($(this).attr('permission_name'))
+})
 
 // ---- Display file structure ----
 
@@ -17,7 +48,7 @@ $('#sidepanel').append(newUserField)
 function make_file_element(file_obj) {
     let file_hash = get_full_path(file_obj)
 
-    if(file_obj.is_folder) {
+    if (file_obj.is_folder) {
         let folder_elem = $(`<div class='folder' id="${file_hash}_div">
             <h3 id="${file_hash}_header">
                 <span class="oi oi-folder" id="${file_hash}_icon"/> ${file_obj.filename} 
@@ -28,10 +59,10 @@ function make_file_element(file_obj) {
         </div>`)
 
         // append children, if any:
-        if( file_hash in parent_to_children) {
+        if (file_hash in parent_to_children) {
             let container_elem = $("<div class='folder_contents'></div>")
             folder_elem.append(container_elem)
-            for(child_file of parent_to_children[file_hash]) {
+            for (child_file of parent_to_children[file_hash]) {
                 let child_elem = make_file_element(child_file)
                 container_elem.append(child_elem)
             }
@@ -48,9 +79,9 @@ function make_file_element(file_obj) {
     }
 }
 
-for(let root_file of root_files) {
+for (let root_file of root_files) {
     let file_elem = make_file_element(root_file)
-    $( "#filestructure" ).append( file_elem);    
+    $("#filestructure").append(file_elem);
 }
 
 
@@ -65,7 +96,7 @@ $('.folder').accordion({
 // -- Connect File Structure lock buttons to the permission dialog --
 
 // open permissions dialog when a permission button is clicked
-$('.permbutton').click( function( e ) {
+$('.permbutton').click(function (e) {
     // Set the path and open dialog:
     let path = e.currentTarget.getAttribute('path');
     perm_dialog.attr('filepath', path)
@@ -75,12 +106,12 @@ $('.permbutton').click( function( e ) {
     // Deal with the fact that folders try to collapse/expand when you click on their permissions button:
     e.stopPropagation() // don't propagate button click to element underneath it (e.g. folder accordion)
     // Emit a click for logging purposes:
-    emitter.dispatchEvent(new CustomEvent('userEvent', { detail: new ClickEntry(ActionEnum.CLICK, (e.clientX + window.pageXOffset), (e.clientY + window.pageYOffset), e.target.id,new Date().getTime()) }))
+    emitter.dispatchEvent(new CustomEvent('userEvent', { detail: new ClickEntry(ActionEnum.CLICK, (e.clientX + window.pageXOffset), (e.clientY + window.pageYOffset), e.target.id, new Date().getTime()) }))
 });
 
 
 // ---- Assign unique ids to everything that doesn't have an ID ----
-$('#html-loc').find('*').uniqueId() 
+$('#html-loc').find('*').uniqueId()
 
 
 
